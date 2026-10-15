@@ -1,0 +1,24 @@
+{
+  "project": "saucedemo-manual-testing",
+  "validated_at": "2026-10-15T08:14:33.773368+00:00",
+  "validated_on": "2026-10-15",
+  "checks": [
+    "Python syntax",
+    "no instructional code comments or docstrings",
+    "YAML parse",
+    "live result consistency",
+    "complete acceptance mapping",
+    "Markdown links",
+    "evidence SHA-256",
+    "PNG signatures",
+    "Playwright trace integrity",
+    "release archive integrity and byte comparison"
+  ],
+  "files": 137,
+  "archive": "dist/saucedemo-manual-testing.zip",
+  "archive_root": ".",
+  "runtime_result": "docs/verification.json",
+  "evidence_manifest": "docs/evidence-index.json",
+  "confirmation_complete": true,
+  "pending_confirmation": 0
+}

@@ -1,0 +1,211 @@
+{
+  "checked_on": "2026-10-15",
+  "raw_results": "evidence/recheck-2026-10-15/results.json",
+  "source_reference_commit": "009b7a5b9db78488b014e689258840a6a7d7741f",
+  "findings": [
+    {
+      "id": "BUG-001",
+      "title": "特殊账号商品图片被替换",
+      "classification": "demo-account-behavior",
+      "accounts": [
+        "problem_user",
+        "visual_user"
+      ],
+      "origin": [
+        "BUG-001"
+      ],
+      "steps": [
+        "以 standard_user 登录，保存 6 件商品图片作为对照。",
+        "退出后分别用 problem_user、visual_user 登录，逐项对照列表图片。",
+        "使用新的浏览器会话重复操作。"
+      ],
+      "expected": "按普通购物场景，图片与对应商品一致。",
+      "actual": "problem_user 的 6/6 张列表图片被替换为同一异常图片；visual_user 的首件商品图片被替换（1/6）。标准账号为 0/6。两轮结果一致。",
+      "resolution": "公开源码明确按账号替换图片，归类为演示预设行为；确认完成，保留为测试样例。",
+      "source_links": [
+        "https://github.com/saucelabs/sample-app-web/blob/009b7a5b9db78488b014e689258840a6a7d7741f/src/pages/Inventory.jsx#L116-L122"
+      ],
+      "screenshots": [
+        "evidence/recheck-2026-10-15/standard_user-1-list.png",
+        "evidence/recheck-2026-10-15/standard_user-2-list.png",
+        "evidence/recheck-2026-10-15/problem_user-1-list.png",
+        "evidence/recheck-2026-10-15/problem_user-2-list.png",
+        "evidence/recheck-2026-10-15/visual_user-1-list.png",
+        "evidence/recheck-2026-10-15/visual_user-2-list.png"
+      ],
+      "traces": [
+        "evidence/recheck-2026-10-15/standard_user-1.zip",
+        "evidence/recheck-2026-10-15/standard_user-2.zip",
+        "evidence/recheck-2026-10-15/problem_user-1.zip",
+        "evidence/recheck-2026-10-15/problem_user-2.zip",
+        "evidence/recheck-2026-10-15/visual_user-1.zip",
+        "evidence/recheck-2026-10-15/visual_user-2.zip"
+      ],
+      "status": "Confirmed",
+      "reproduced_sessions": 2,
+      "attempted_sessions": 2,
+      "checked_on": "2026-10-15",
+      "remediation": "not-performed"
+    },
+    {
+      "id": "BUG-002",
+      "title": "特殊账号详情跳转和列表价格异常",
+      "classification": "demo-account-behavior",
+      "accounts": [
+        "problem_user",
+        "visual_user"
+      ],
+      "origin": [
+        "BUG-002"
+      ],
+      "steps": [
+        "分别登录 standard_user、problem_user、visual_user，记录每件商品的列表信息。",
+        "依次点击全部 6 件商品名称，比较名称、价格、图片地址和描述，再返回列表。",
+        "在新会话重复全量对照。"
+      ],
+      "expected": "按普通购物场景，列表与详情指向同一商品且价格一致。",
+      "actual": "problem_user 的 6/6 次详情名称与所选商品不一致；visual_user 的 6/6 件商品列表价格与详情不一致，名称对应正常。标准账号 6/6 件商品四项均一致；两轮结果一致。",
+      "resolution": "源码对 problem_user 的详情商品编号加 1，对 visual_user 的列表价格随机化。两种表现作为本条的独立子场景，不泛称所有账号商品错误。",
+      "source_links": [
+        "https://github.com/saucelabs/sample-app-web/blob/009b7a5b9db78488b014e689258840a6a7d7741f/src/components/InventoryListItem.jsx#L73-L77",
+        "https://github.com/saucelabs/sample-app-web/blob/009b7a5b9db78488b014e689258840a6a7d7741f/src/pages/Inventory.jsx#L122"
+      ],
+      "screenshots": [
+        "evidence/recheck-2026-10-15/standard_user-1-detail-0.png",
+        "evidence/recheck-2026-10-15/standard_user-2-detail-0.png",
+        "evidence/recheck-2026-10-15/problem_user-1-detail-0.png",
+        "evidence/recheck-2026-10-15/problem_user-2-detail-0.png",
+        "evidence/recheck-2026-10-15/visual_user-1-detail-0.png",
+        "evidence/recheck-2026-10-15/visual_user-2-detail-0.png"
+      ],
+      "traces": [
+        "evidence/recheck-2026-10-15/standard_user-1.zip",
+        "evidence/recheck-2026-10-15/standard_user-2.zip",
+        "evidence/recheck-2026-10-15/problem_user-1.zip",
+        "evidence/recheck-2026-10-15/problem_user-2.zip",
+        "evidence/recheck-2026-10-15/visual_user-1.zip",
+        "evidence/recheck-2026-10-15/visual_user-2.zip"
+      ],
+      "status": "Confirmed",
+      "reproduced_sessions": 2,
+      "attempted_sessions": 2,
+      "checked_on": "2026-10-15",
+      "remediation": "not-performed"
+    },
+    {
+      "id": "BUG-003",
+      "title": "空购物车可以完成零金额订单",
+      "classification": "business-rule-recommendation",
+      "accounts": [
+        "standard_user"
+      ],
+      "origin": [
+        "BUG-003"
+      ],
+      "steps": [
+        "在新会话登录 standard_user，不加入任何商品，进入购物车，确认商品行数为 0。",
+        "点击 Checkout，依次填写 Learner、Tester、100000，点击 Continue。",
+        "确认订单概览没有商品且 Item total: $0，点击 Finish。",
+        "在另一新会话重复操作。"
+      ],
+      "expected": "按本项目提出的业务规则建议，购物车为空时应阻止提交订单；此规则不作为官方既有规格。",
+      "actual": "两轮均以 0 件商品、Item total: $0 进入概览并完成订单，页面显示 Thank you for your order!。",
+      "resolution": "可观察行为已确认。NC-001 相对本项目业务规则为 Fail，保留为改进建议；没有官方空订单限制规格，不认定为违反官方已承诺功能。",
+      "source_links": [],
+      "screenshots": [
+        "evidence/recheck-2026-10-15/empty-confirmed-1-before.png",
+        "evidence/recheck-2026-10-15/empty-confirmed-1-after.png",
+        "evidence/recheck-2026-10-15/empty-confirmed-2-before.png",
+        "evidence/recheck-2026-10-15/empty-confirmed-2-after.png"
+      ],
+      "traces": [
+        "evidence/recheck-2026-10-15/empty-confirmed-1.zip",
+        "evidence/recheck-2026-10-15/empty-confirmed-2.zip"
+      ],
+      "status": "Confirmed",
+      "reproduced_sessions": 2,
+      "attempted_sessions": 2,
+      "checked_on": "2026-10-15",
+      "remediation": "not-performed"
+    },
+    {
+      "id": "BUG-004",
+      "title": "problem_user 填写姓氏覆盖名字，无法继续结算",
+      "classification": "demo-account-behavior",
+      "accounts": [
+        "problem_user"
+      ],
+      "origin": [
+        "BUG-003"
+      ],
+      "steps": [
+        "用 problem_user 登录，加入 Sauce Labs Backpack 和 Sauce Labs Bike Light。",
+        "进入 Checkout，依次在 First Name、Last Name、Zip/Postal Code 填写 Learner、Tester、100000。",
+        "读取三个字段，再点击 Continue；使用 standard_user 对照，并在新会话重复。"
+      ],
+      "expected": "三个字段分别保留输入值，可以进入订单概览并完成订单。",
+      "actual": "problem_user 的 First Name 变成 Tester，Last Name 为空，邮编为 100000；Continue 后提示 Error: Last Name is required，不能进入概览。标准账号相同输入完成订单；两轮结果一致。",
+      "resolution": "从历史 BUG-003 的混合描述拆分；源码的 problem_user 姓氏变更分支调用 setFirstName，属于演示预设行为。",
+      "source_links": [
+        "https://github.com/saucelabs/sample-app-web/blob/009b7a5b9db78488b014e689258840a6a7d7741f/src/pages/CheckOutStepOne.jsx#L25-L30",
+        "https://github.com/saucelabs/sample-app-web/blob/009b7a5b9db78488b014e689258840a6a7d7741f/src/pages/CheckOutStepOne.jsx#L47-L49"
+      ],
+      "screenshots": [
+        "evidence/recheck-2026-10-15/problem_user-1-flow-checkout.png",
+        "evidence/recheck-2026-10-15/problem_user-2-flow-checkout.png",
+        "evidence/recheck-2026-10-15/standard_user-1-flow-checkout.png",
+        "evidence/recheck-2026-10-15/standard_user-2-flow-checkout.png"
+      ],
+      "traces": [
+        "evidence/recheck-2026-10-15/problem_user-1-flow.zip",
+        "evidence/recheck-2026-10-15/problem_user-2-flow.zip",
+        "evidence/recheck-2026-10-15/standard_user-1-flow.zip",
+        "evidence/recheck-2026-10-15/standard_user-2-flow.zip"
+      ],
+      "status": "Confirmed",
+      "reproduced_sessions": 2,
+      "attempted_sessions": 2,
+      "checked_on": "2026-10-15",
+      "remediation": "not-performed"
+    },
+    {
+      "id": "BUG-005",
+      "title": "problem_user 点击部分商品加入按钮后购物车仍为空",
+      "classification": "demo-account-behavior",
+      "accounts": [
+        "problem_user"
+      ],
+      "origin": [
+        "BUG-002"
+      ],
+      "steps": [
+        "在空购物车的新会话登录 problem_user。",
+        "点击 Sauce Labs Bolt T-Shirt 的 Add to cart，进入购物车查看商品。",
+        "用 standard_user 对同一商品执行相同操作；各自在新会话重复。"
+      ],
+      "expected": "购物车出现 Sauce Labs Bolt T-Shirt。",
+      "actual": "problem_user 两轮购物车均为 0 件；standard_user 两轮均包含该 T-Shirt。已确认是未加入商品，不是加入了错误商品。",
+      "resolution": "从历史 BUG-002 的购物车描述拆分；源码对 problem_user 的奇数编号商品提前返回。实测针对编号为 1 的 Bolt T-Shirt，不外推所有商品都不能加入。",
+      "source_links": [
+        "https://github.com/saucelabs/sample-app-web/blob/009b7a5b9db78488b014e689258840a6a7d7741f/src/components/InventoryListItem.jsx#L33-L38"
+      ],
+      "screenshots": [
+        "evidence/recheck-2026-10-15/problem_user-odd-item-1.png",
+        "evidence/recheck-2026-10-15/problem_user-odd-item-2.png",
+        "evidence/recheck-2026-10-15/standard_user-odd-item-1.png",
+        "evidence/recheck-2026-10-15/standard_user-odd-item-2.png"
+      ],
+      "traces": [
+        "evidence/recheck-2026-10-15/problem_user-odd-item-1.zip",
+        "evidence/recheck-2026-10-15/problem_user-odd-item-2.zip",
+        "evidence/recheck-2026-10-15/standard_user-odd-item-1.zip",
+        "evidence/recheck-2026-10-15/standard_user-odd-item-2.zip"
+      ],
+      "status": "Confirmed",
+      "reproduced_sessions": 2,
+      "attempted_sessions": 2,
+      "checked_on": "2026-10-15",
+      "remediation": "not-performed"
+    }
+  ]
+}

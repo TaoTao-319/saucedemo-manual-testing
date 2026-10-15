@@ -1,0 +1,43 @@
+{
+  "kind": "superseded-historical-records",
+  "current_results": false,
+  "note": "整合时校准的历史资料；历史账号适用范围不足，不与本次结果合并统计。",
+  "main_cases": {
+    "total": 20,
+    "pass": 18,
+    "fail": 2
+  },
+  "regression": {
+    "total": 11,
+    "pass": 7,
+    "fail": 4
+  },
+  "previous_findings": [
+    {
+      "id": "BUG-001",
+      "previous_status": "Needs confirmation",
+      "current_mapping": [
+        "BUG-001"
+      ],
+      "screenshot": "evidence/BUG-001.png"
+    },
+    {
+      "id": "BUG-002",
+      "previous_status": "Needs confirmation",
+      "current_mapping": [
+        "BUG-002",
+        "BUG-005"
+      ],
+      "screenshot": "evidence/BUG-002.png"
+    },
+    {
+      "id": "BUG-003",
+      "previous_status": "Needs confirmation",
+      "current_mapping": [
+        "BUG-003",
+        "BUG-004"
+      ],
+      "screenshot": "evidence/BUG-003.png"
+    }
+  ]
+}

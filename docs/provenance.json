@@ -1,0 +1,37 @@
+{
+  "project": "saucedemo-manual-testing",
+  "sources": [
+    {
+      "source": "26 09 24 Step04/BUG-001.png",
+      "target": "evidence/BUG-001.png",
+      "source_sha256": "aee412735719abef64e243f8fc79d3a23e30496b14bf7206b278b42fdbf1d2c3",
+      "target_sha256": "aee412735719abef64e243f8fc79d3a23e30496b14bf7206b278b42fdbf1d2c3"
+    },
+    {
+      "source": "26 09 24 Step04/BUG-002.png",
+      "target": "evidence/BUG-002.png",
+      "source_sha256": "83106765fc4f5c4da47be8fb40dad4f3c0bde3d83bb11418bf3d074ea7d76796",
+      "target_sha256": "83106765fc4f5c4da47be8fb40dad4f3c0bde3d83bb11418bf3d074ea7d76796"
+    },
+    {
+      "source": "26 09 24 Step04/BUG-003.png",
+      "target": "evidence/BUG-003.png",
+      "source_sha256": "cfab46f89cc81eea554664ab69be3ff80daeb5469195ab7210589995c6d309a5",
+      "target_sha256": "cfab46f89cc81eea554664ab69be3ff80daeb5469195ab7210589995c6d309a5"
+    }
+  ],
+  "updated_on": "2026-10-15",
+  "original_step_folders_modified": false,
+  "current_execution": {
+    "results": "evidence/recheck-2026-10-15/results.json",
+    "started_at": "2026-10-15T15:59:14.658600+08:00",
+    "finished_at": "2026-10-15T16:04:23.032580+08:00",
+    "method": "Playwright-assisted browser recheck"
+  },
+  "source_reference": {
+    "repository": "https://github.com/saucelabs/sample-app-web",
+    "commit": "009b7a5b9db78488b014e689258840a6a7d7741f",
+    "deployed_commit_verified": false
+  },
+  "historical_snapshot": "docs/history.json"
+}

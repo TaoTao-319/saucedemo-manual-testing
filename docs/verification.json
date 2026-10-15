@@ -1,0 +1,52 @@
+{
+  "checked_on": "2026-10-15",
+  "kind": "live-browser-reexecution-and-record-consistency",
+  "current_site_reexecution": true,
+  "started_at": "2026-10-15T15:59:14.658600+08:00",
+  "finished_at": "2026-10-15T16:04:23.032580+08:00",
+  "platform": "Windows",
+  "browser": "Chromium 153.0.8010.12",
+  "method": "Playwright-assisted browser interaction, assertions, screenshots and traces",
+  "cases": {
+    "total": 20,
+    "pass": 20,
+    "fail": 0
+  },
+  "extensions": {
+    "total": 3,
+    "pass": 3,
+    "fail": 0
+  },
+  "negative_rule_checks": {
+    "total": 1,
+    "pass": 0,
+    "fail": 1,
+    "repetitions": 2,
+    "rule_authority": "project-recommendation"
+  },
+  "regression": {
+    "total": 11,
+    "pass": 8,
+    "reproduced": 3,
+    "independent_case_count": false
+  },
+  "findings": {
+    "total": 5,
+    "confirmed": 5,
+    "pending_confirmation": 0,
+    "demo_account_behavior": 4,
+    "business_rule_recommendation": 1
+  },
+  "third_party_site_modified": false,
+  "raw_results": "evidence/recheck-2026-10-15/results.json",
+  "findings_record": "docs/findings.json",
+  "checks": [
+    "live baseline and supplemental assertions",
+    "two independent sessions per observed account",
+    "empty-cart before/overview/after evidence",
+    "source-reference classification",
+    "requirement coverage",
+    "document links",
+    "evidence and trace integrity"
+  ]
+}
