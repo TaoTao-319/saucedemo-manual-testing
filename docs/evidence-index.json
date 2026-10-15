@@ -1,5 +1,6 @@
 {
   "checked_on": "2026-10-15",
+  "text_line_endings": "LF",
   "files": [
     {
       "path": "evidence/BUG-001.png",
@@ -218,13 +219,13 @@
     },
     {
       "path": "evidence/recheck-2026-10-15/README.md",
-      "bytes": 2205,
-      "sha256": "ac3d03da9ec87986feb6eaf65c7390385ebd7f06bfcfba2a31e2df234292b223"
+      "bytes": 2182,
+      "sha256": "2d8fb69fa718c3f885fceec5f0e24eb96e923973b629f794bc79e90fe878fb3d"
     },
     {
       "path": "evidence/recheck-2026-10-15/results.json",
-      "bytes": 76548,
-      "sha256": "2beae875a6d86e059dc9606b4df06f84378db1945f84ace1014de486ab5cd6e1"
+      "bytes": 74938,
+      "sha256": "a35bdbacc7d4187353677f1b0ca9525a0344768568ada28b8899d13daa3e7f33"
     },
     {
       "path": "evidence/recheck-2026-10-15/standard_user-1-detail-0.png",
